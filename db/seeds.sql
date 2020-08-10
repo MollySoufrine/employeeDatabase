@@ -16,7 +16,7 @@ first_name VARCHAR (30) NOT NULL,
  FOREIGN KEY(manager_id) REFERENCES (id)
  );
  
-CREATE TABLE role(
+CREATE TABLE role (
 id INT AUTO_INCREMENT NOT NULL,
 PRIMARY KEY(id),
 title VARCHAR (30),
@@ -32,5 +32,6 @@ PRIMARY KEY(id),
  );
  
  INSERT INTO employee(first_name, last_name) VALUES("John", "Doe"), ("Mike", "Chan"), ("Ashley","Rodriguez"),("Kevin","Tupki"),("Malia","Brown"),("Sarah","Lourd"),("Tom","Allen"),("Christian","Eckenrode");
-INSERT INTO role (title, salary) VALUES("Sales Lead",100000),("Sales Person","80000"),("Lead Engineer","150000"),("Software Engineer","120000"),("Accountant","125000"),("Legal Team Lead","250000"),("Lawyer","190000"),("Lead Engineer","150000");
+INSERT INTO role (title, salary) VALUES("Sales Lead","100000"),("Sales Person","80000"),("Lead Engineer","150000"),("Software Engineer","120000"),("Accountant","125000"),("Legal Team Lead","250000"),("Lawyer","190000"),("Lead Engineer","150000");
 INSERT INTO department (name) VALUES("Sales"),("Sales"),("Engineering"),("Engineering"),("Finance"),("Legal"),("Legal"),("Engineering");
+
