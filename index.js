@@ -24,8 +24,16 @@ async function loadMainPrompts() {
           value: "VIEW_EMPLOYEES_BY_DEPARTMENT",
         },
         {
+          name: "View all Departments",
+          value: "VIEW_ALL_DEPARTMENT",
+        },
+        {
           name: "View All Employess by Role",
           value: "VIEW_EMPLOYEES_BY_ROLE",
+        },
+        {
+          name: "View All Roles",
+          value: "VIEW_ALL_ROLES",
         },
         {
           name: "Add Employee",
@@ -63,12 +71,12 @@ async function loadMainPrompts() {
   switch (choice) {
     case "VIEW_EMPLOYEES":
       return viewEmployees();
-    case "VIEW_EMPLOYEES_BY_DEPARTMENT":
+    case "VIEW_ALL_DEPARTMENT":
       return viewDepartments();
     case "ADD_DEPARTMENT":
       return addDepartment();
     //..other functions
-    case "VIEW_EMPLOYEES_BY_ROLE":
+    case "VIEW_ALL_ROLES":
       return viewAllRoles();
     case "ADD_ROLE":
       return addRole();
@@ -92,15 +100,13 @@ async function viewEmployees() {
 
 async function viewDepartments() {
   const departments = await db.findAllDepartments();
-  console.log(departments);
+  console.table(departments);
   loadMainPrompts();
 }
 
 async function viewAllRoles() {
   const roles = await db.findAllRoles();
-
-  console.log("\n");
-  console.table(employees);
+  console.table(roles);
 
   loadMainPrompts();
 }
