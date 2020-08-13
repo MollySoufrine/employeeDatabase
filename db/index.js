@@ -1,6 +1,6 @@
 const connection = require("./connection");
 const listRoles = [];
-const listDepartments = [];
+
 class DB {
   // Keeping a reference to the connection on the class in case we need it later
   constructor(connection) {

@@ -71,6 +71,8 @@ async function loadMainPrompts() {
   switch (choice) {
     case "VIEW_EMPLOYEES":
       return viewEmployees();
+    case "VIEW_EMPLOYEES_BY_DEPARTMENT":
+      return viewEmployeeByDepartment();
     case "VIEW_ALL_DEPARTMENT":
       return viewDepartments();
     case "ADD_DEPARTMENT":
@@ -90,10 +92,10 @@ async function loadMainPrompts() {
 }
 
 async function viewEmployees() {
-  const employee = await db.findAllEmployees();
+  const employees = await db.findAllEmployees();
 
   console.log("\n");
-  console.table(employee);
+  console.table(employees);
 
   loadMainPrompts();
 }

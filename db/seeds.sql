@@ -12,8 +12,8 @@ first_name VARCHAR (30) NOT NULL,
  last_name VARCHAR (30) NOT NULL,
  role_id int,
  manager_id int,
- FOREIGN KEY(role_id) REFERENCES role(id),
- FOREIGN KEY(manager_id) REFERENCES (id)
+ CONSTRAINT role_id FOREIGN KEY(role_id) REFERENCES role(id),
+ CONSTRAINT manager_id FOREIGN KEY(manager_id) REFERENCES employee (id)
  );
  
 CREATE TABLE role (
@@ -22,7 +22,7 @@ PRIMARY KEY(id),
 title VARCHAR (30),
 salary DECIMAL,
 department_id int,
-FOREIGN KEY(department_id) REFERENCES department(id)
+CONSTRAINT department_id FOREIGN KEY(department_id) REFERENCES department(id)
 );
 
  CREATE TABLE department (
