@@ -18,7 +18,7 @@ class DB {
   findAllPossibleManagers(managerId) {
     //TODO: complete the function
     return this.connection.query(
-      "SELECT manager_id FROM employee IS NULL",
+      "SELECT manager_id FROM employee WHERE manager_id = NULL",
       managerId
     );
   }

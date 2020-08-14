@@ -56,8 +56,8 @@ async function loadMainPrompts() {
           value: "UPDATE_EMPLOYEE_BY_ROLE",
         },
         {
-          name: "Update Employee Manager",
-          value: "UPDATE_EMPLOYEE_MANAGER",
+          name: "View all Managers",
+          value: "VIEW_MANAGER",
         },
         {
           name: "Quit",
@@ -86,6 +86,8 @@ async function loadMainPrompts() {
       return createNewEmployee();
     case "UPDATE_EMPLOYEE_BY_ROLE":
       return updateEmployeeRole();
+    case "VIEW_MANAGER":
+      return viewManagers();
     default:
       return quit();
   }
@@ -228,6 +230,13 @@ async function addRole() {
   ]);
 
   await db.createRole(roleId);
+  loadMainPrompts();
+}
+
+async function viewManagers() {
+  const managers = await db.findAllPossibleManagers();
+  console.table(managers);
+
   loadMainPrompts();
 }
 
