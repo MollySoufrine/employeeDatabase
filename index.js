@@ -1,5 +1,6 @@
 const { prompt } = require("inquirer");
 const db = require("./db");
+const { removeRole } = require("./db");
 
 // const { createNewEmployee } = require("./db");
 
@@ -52,6 +53,14 @@ async function loadMainPrompts() {
           value: "REMOVE_EMPLOYEE",
         },
         {
+          name: "Remove Role",
+          value: "REMOVE_ROLE",
+        },
+        {
+          name: "Remove Department",
+          value: "REMOVE_DEPARTMENT",
+        },
+        {
           name: "Update Employee Role",
           value: "UPDATE_EMPLOYEE_BY_ROLE",
         },
@@ -88,6 +97,12 @@ async function loadMainPrompts() {
       return updateEmployeeRole();
     case "VIEW_MANAGER":
       return viewManagers();
+    case "REMOVE_EMPLOYEE":
+      return removeThisEmployee();
+    case "REMOVE_ROLE":
+      return removeThisRole();
+    case "REMOVE_DEPARTMENT":
+      return removeThisDept();
     default:
       return quit();
   }
@@ -238,6 +253,17 @@ async function viewManagers() {
   console.table(managers);
 
   loadMainPrompts();
+}
+
+async function removeThisRole() {}
+
+async function removeThisDept() {
+  const removedept = await db.removeDepartment();
+  console.log(`This department ${removedept} has been removed`);
+}
+async function removeThisEmployee() {
+  const removeemployee = await db.removeEmployee();
+  console.log(`This employee ${removeemployee} has been removed`);
 }
 
 function quit() {
