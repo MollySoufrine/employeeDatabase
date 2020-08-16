@@ -240,7 +240,7 @@ async function addRole() {
     {
       type: "input",
       name: "roleId",
-      message: "Would you like to add a new Department?",
+      message: "Would you like to add a new Role?",
     },
   ]);
 
@@ -255,7 +255,26 @@ async function viewManagers() {
   loadMainPrompts();
 }
 
-async function removeThisRole() {}
+async function removeThisRole() {
+  const roles = await db.findAllRoles();
+
+  const removeRoleChoices = roles.map(({ id, title }) => ({
+    name: `${title}`,
+    value: id,
+  }));
+
+  const { removeRolebyID } = await prompt([
+    {
+      type: "list",
+      name: "removeRolebyID",
+      message: "Which role would you like to remove?",
+      choices: removeRoleChoices,
+    },
+  ]);
+
+  await db.removeRole(removeRolebyID);
+  loadMainPrompts();
+}
 
 async function removeThisDept() {
   const removedept = await db.removeDepartment();
