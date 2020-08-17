@@ -263,22 +263,37 @@ async function removeThisRole() {
     value: id,
   }));
 
-  const { removeRolebyID } = await prompt([
+  const { roleId } = await prompt([
     {
       type: "list",
-      name: "removeRolebyID",
+      name: "roleId",
       message: "Which role would you like to remove?",
       choices: removeRoleChoices,
     },
   ]);
 
-  await db.removeRole(removeRolebyID);
+  await db.removeRole(roleId);
   loadMainPrompts();
 }
 
 async function removeThisDept() {
-  const removedept = await db.removeDepartment();
-  console.log(`This department ${removedept} has been removed`);
+  const department = await db.findAllDepartments();
+
+  const removeDepartmentChoices = department.map(({ id, name }) => ({
+    name: `${name}`,
+    value: id,
+  }));
+
+  const { departmentId } = await prompt([
+    {
+      type: "list",
+      name: "departmentId",
+      message: "Which role would you like to remove?",
+      choices: removeDepartmentChoices,
+    },
+  ]);
+  await db.removeDepartment(departmentId);
+  loadMainPrompts();
 }
 async function removeThisEmployee() {
   const removeemployee = await db.removeEmployee();
