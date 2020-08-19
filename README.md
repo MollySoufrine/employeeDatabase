@@ -9,3 +9,5 @@ The other .js file held the functions that generated the prompts for each specif
 I have also added a seeds file to show what was done within my DB.
 
 I have preformed the minimum requirements so far but will be continuing and updating this oriject to gain more skills and knowledge.
+
+I have added the remove role and remove department functions as well as view employee by role and department. Now I just need to work on them a bit more to get them to work properly.
