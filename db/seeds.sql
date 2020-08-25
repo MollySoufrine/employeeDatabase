@@ -15,7 +15,7 @@ PRIMARY KEY(id),
 title VARCHAR (30),
 salary DECIMAL(30.2),
 department_id int,
-CONSTRAINT department_id FOREIGN KEY(department_id) REFERENCES department(id)
+CONSTRAINT department_id FOREIGN KEY(department_id) REFERENCES department(id) ON DELETE CASCADE
 );
  
 CREATE TABLE employee(
@@ -25,7 +25,7 @@ first_name VARCHAR (30) NOT NULL,
  last_name VARCHAR (30) NOT NULL,
  role_id int,
  manager_id int,
- CONSTRAINT role_id FOREIGN KEY(role_id) REFERENCES role(id)
+ CONSTRAINT role_id FOREIGN KEY(role_id) REFERENCES role(id) ON DELETE SET NULL
  );
  
 INSERT INTO department (name) VALUES("Sales"),("Sales"),("Engineering"),("Engineering"),("Finance"),("Legal"),("Legal"),("Engineering");
