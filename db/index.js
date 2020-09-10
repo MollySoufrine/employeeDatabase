@@ -56,12 +56,8 @@ class DB {
 
   // Create a new role
 
-  createRole() {
-    const [roles] = this.connection.query("INSERT INTO title FROM role");
-    roles.forEach((role) => {
-      listRoles.push(role.title);
-    });
-    return listRoles;
+  createRole(roleId) {
+    return this.connection.query("INSERT INTO title FROM role", roleId);
   }
 
   // Remove a role from the db
@@ -77,8 +73,8 @@ class DB {
     );
   }
   // Create a new department
-  createDepartment(departmentId) {
-    return this.connection.query("INSERT INTO department SET ?", departmentId);
+  createDepartment(answers) {
+    return this.connection.query("INSERT INTO department SET ?", answers);
   }
   // Remove a department
   removeDepartment(departmentId) {

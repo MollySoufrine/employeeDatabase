@@ -224,27 +224,60 @@ async function updateEmployeeRole() {
 }
 
 async function addDepartment() {
-  const departmentId = await prompt([
+  const answers = await prompt([
     {
       type: "input",
-      name: "departmentId",
+      name: "name",
       message: "Would you like to add a new Department?",
     },
   ]);
-  await db.createDepartment(departmentId);
+  console.log(answers);
+  await db.createDepartment(answers);
   loadMainPrompts();
 }
 
 async function addRole() {
-  const roleId = await prompt([
+  //
+  // asking for title, salary, deparrtment
+  // retrieve the departments table
+  // list those out as options
+  let departments = await db.findAllDepartments();
+  console.log(departments);
+  departments = departments.map((department) => {
+    return {
+      name: department.name,
+      value: department.id,
+    };
+  });
+  console.log(departments);
+
+  const answers = await prompt([
+    /*{
+      // ask for title
+    },
+    {
+      // ask for salary
+    },*/
     {
       type: "input",
-      name: "roleId",
-      message: "Would you like to add a new Role?",
+      name: "title",
+      message: "What is the title of this employee?",
+    },
+    {
+      type: "input",
+      name: "salary",
+      message: "What is the salary of this role?",
+    },
+    {
+      // ask for the department
+      type: "list",
+      name: "role_id",
+      message: "Select the department the role belongs to?",
+      choices: departments,
     },
   ]);
 
-  await db.createRole(roleId);
+  await db.createRole(answers);
   loadMainPrompts();
 }
 
