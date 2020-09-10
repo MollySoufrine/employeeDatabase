@@ -260,8 +260,8 @@ async function addRole() {
     },*/
     {
       type: "input",
-      name: "role",
-      message: "What is the title of this employee?",
+      name: "title",
+      message: "What is the title of this role",
     },
     {
       type: "input",
@@ -271,7 +271,7 @@ async function addRole() {
     {
       // ask for the department
       type: "list",
-      name: "role_id",
+      name: "department_id",
       message: "Select the department the role belongs to?",
       choices: departments,
     },
