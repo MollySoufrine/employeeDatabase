@@ -57,7 +57,7 @@ class DB {
   // Create a new role
 
   createRole(roleId) {
-    return this.connection.query("INSERT INTO title FROM role", roleId);
+    return this.connection.query("INSERT INTO title SET ?", answers);
   }
 
   // Remove a role from the db

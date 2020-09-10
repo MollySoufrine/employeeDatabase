@@ -242,14 +242,14 @@ async function addRole() {
   // retrieve the departments table
   // list those out as options
   let departments = await db.findAllDepartments();
-  console.log(departments);
+  // console.log(departments);
   departments = departments.map((department) => {
     return {
       name: department.name,
       value: department.id,
     };
   });
-  console.log(departments);
+  // console.log(departments);
 
   const answers = await prompt([
     /*{
