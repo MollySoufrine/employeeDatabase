@@ -260,7 +260,7 @@ async function addRole() {
     },*/
     {
       type: "input",
-      name: "title",
+      name: "role",
       message: "What is the title of this employee?",
     },
     {

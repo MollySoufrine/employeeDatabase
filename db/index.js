@@ -56,7 +56,7 @@ class DB {
 
   // Create a new role
 
-  createRole(roleId) {
+  createRole(answers) {
     return this.connection.query("INSERT INTO title SET ?", answers);
   }
 
