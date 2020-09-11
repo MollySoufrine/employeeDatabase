@@ -45,7 +45,12 @@ class DB {
   }
 
   // Update the given employee's manager
-  updateManager() {}
+  updateManager(employeeId, managerId) {
+    return this.connection.query(
+      "UPDATE employee SET manager_id = ? WHERE id = ? ",
+      [employeeId, managerId]
+    );
+  }
 
   // Find all roles, join with departments to display the department name
   findAllRoles() {
