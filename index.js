@@ -65,6 +65,10 @@ async function loadMainPrompts() {
           value: "UPDATE_EMPLOYEE_BY_ROLE",
         },
         {
+          name: "Update Employee Manager",
+          value: "UPDATE_EMPLOYEE_MANAGER",
+        },
+        {
           name: "View all Managers",
           value: "VIEW_MANAGER",
         },
@@ -95,6 +99,8 @@ async function loadMainPrompts() {
       return createNewEmployee();
     case "UPDATE_EMPLOYEE_BY_ROLE":
       return updateEmployeeRole();
+    case "UPDATE_EMPLOYEE_MANAGER":
+      return updateEmployeeManager();
     case "VIEW_MANAGER":
       return viewManagers();
     case "REMOVE_EMPLOYEE":
@@ -220,6 +226,40 @@ async function updateEmployeeRole() {
 
   console.log("Updated Employee");
 
+  loadMainPrompts();
+}
+
+async function updateEmployeeManager() {
+  const findEmployees = await db.findAllEmployees();
+  const findManagers = await db.findAllPossibleManagers();
+
+  const employeeChoices = findEmployees.map(
+    ({ id, first_name, last_name }) => ({
+      name: `${first_name} ${last_name}`,
+      value: id,
+    })
+  );
+  const { updatedManager } = await prompt([
+    {
+      type: "list",
+      name: "updateManager",
+      message: "Select an employee to update",
+      choices: employeeChoices,
+    },
+  ]);
+  const managerChoices = findManagers.map(({ id, title }) => ({
+    name: title,
+    value: id,
+  }));
+  const { newManager } = await prompt([
+    {
+      type: "list",
+      name: "newManager",
+      message: "select new manager",
+      choices: managerChoices,
+    },
+  ]);
+  await db.updateManager(updatedManager, newManager);
   loadMainPrompts();
 }
 
