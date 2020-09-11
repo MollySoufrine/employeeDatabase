@@ -229,7 +229,7 @@ async function updateEmployeeRole() {
   loadMainPrompts();
 }
 
-async function updateEmployeeManager() {
+async function createNewManager() {
   const findEmployees = await db.findAllEmployees();
   const findManagers = await db.findAllPossibleManagers();
 
@@ -259,7 +259,7 @@ async function updateEmployeeManager() {
       choices: managerChoices,
     },
   ]);
-  await db.updateManager(updatedManager, newManager);
+  await db.createManager(updatedManager, newManager);
   loadMainPrompts();
 }
 
