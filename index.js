@@ -29,7 +29,7 @@ async function loadMainPrompts() {
           value: "VIEW_ALL_DEPARTMENT",
         },
         {
-          name: "View All Employess by Role",
+          name: "View All Employees by Role",
           value: "VIEW_EMPLOYEES_BY_ROLE",
         },
         {
@@ -231,7 +231,7 @@ async function updateEmployeeRole() {
 
 async function createNewManager() {
   const findEmployees = await db.findAllEmployees();
-  const findManagers = await db.findAllPossibleManagers();
+  const manager = await db.createManager();
 
   const employeeChoices = findEmployees.map(
     ({ id, first_name, last_name }) => ({
@@ -243,7 +243,7 @@ async function createNewManager() {
     {
       type: "list",
       name: "updateManager",
-      message: "Select an employee to update",
+      message: "Select an employee to give a manager",
       choices: employeeChoices,
     },
   ]);
