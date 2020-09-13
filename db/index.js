@@ -15,10 +15,10 @@ class DB {
   }
 
   // Find all employees except the given employee id
-  createManager(managerId) {
+  findAllPossibleManagers(managerId) {
     //TODO: complete the function
     return this.connection.query(
-      "SELECT employee_id FROM employee WHERE manager_id = NULL",
+      "SELECT * FROM employee WHERE manager_id = NULL",
       managerId
     );
   }

@@ -230,39 +230,39 @@ async function updateEmployeeRole() {
   loadMainPrompts();
 }
 
-async function createNewManager() {
-  const findEmployees = await db.findAllEmployees();
-  const manager = await db.createManager();
+// async function createNewManager() {
+//   const findEmployees = await db.findAllEmployees();
+//   const manager = await db.createManager();
 
-  const employeeChoices = findEmployees.map(
-    ({ id, first_name, last_name }) => ({
-      name: `${first_name} ${last_name}`,
-      value: id,
-    })
-  );
-  const { updatedManager } = await prompt([
-    {
-      type: "list",
-      name: "updateManager",
-      message: "Select an employee to give a manager",
-      choices: employeeChoices,
-    },
-  ]);
-  const managerChoices = findManagers.map(({ id, title }) => ({
-    name: title,
-    value: id,
-  }));
-  const { newManager } = await prompt([
-    {
-      type: "list",
-      name: "newManager",
-      message: "select new manager",
-      choices: managerChoices,
-    },
-  ]);
-  await db.createManager(updatedManager, newManager);
-  loadMainPrompts();
-}
+//   const employeeChoices = findEmployees.map(
+//     ({ id, first_name, last_name }) => ({
+//       name: `${first_name} ${last_name}`,
+//       value: id,
+//     })
+//   );
+//   const { updatedManager } = await prompt([
+//     {
+//       type: "list",
+//       name: "updateManager",
+//       message: "Select an employee to give a manager",
+//       choices: employeeChoices,
+//     },
+//   ]);
+//   const managerChoices = findManagers.map(({ id, title }) => ({
+//     name: title,
+//     value: id,
+//   }));
+//   const { newManager } = await prompt([
+//     {
+//       type: "list",
+//       name: "newManager",
+//       message: "select new manager",
+//       choices: managerChoices,
+//     },
+//   ]);
+//   await db.createManager(updatedManager, newManager);
+//   loadMainPrompts();
+// }
 
 async function addDepartment() {
   const answers = await prompt([
