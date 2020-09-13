@@ -1,6 +1,7 @@
 const { prompt } = require("inquirer");
 const db = require("./db");
 const { removeRole } = require("./db");
+const inquirer = require("inquirer");
 
 // const { createNewEmployee } = require("./db");
 
@@ -369,8 +370,25 @@ async function removeThisDept() {
   loadMainPrompts();
 }
 async function removeThisEmployee() {
-  const removeemployee = await db.removeEmployee();
-  console.log(`This employee ${removeemployee} has been removed`);
+  const employees = await db.findAllEmployees();
+  const removeEmployeeChoices = employees.map(
+    ({ id, first_name, last_name }) => ({
+      name: `${first_name} ${last_name}`,
+
+      value: id,
+    })
+  );
+  const { employeeId } = await prompt([
+    {
+      type: "list",
+      name: "employeeId",
+      message: "Which employee would you like to remove?",
+      choices: removeEmployeeChoices,
+    },
+  ]);
+
+  await db.removeEmployee(employeeId);
+  loadMainPrompts();
 }
 
 function quit() {

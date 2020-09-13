@@ -31,7 +31,7 @@ class DB {
   // Remove an employee with the given id
   removeEmployee(employeeId) {
     return this.connection.query(
-      "DELETE FROM employee WHERE employee.id  = ?",
+      "DELETE FROM employee WHERE id  = ?",
       employeeId
     );
   }
