@@ -15,13 +15,13 @@ class DB {
   }
 
   // Find all employees except the given employee id
-  findAllPossibleManagers(managerId) {
-    //TODO: complete the function
-    return this.connection.query(
-      "SELECT * FROM employee WHERE manager_id = NULL",
-      managerId
-    );
-  }
+  // findAllPossibleManagers(managerId) {
+  //   //TODO: complete the function
+  //   return this.connection.query(
+  //     "SELECT * FROM employee WHERE manager_id = NULL",
+  //     managerId
+  //   );
+  // }
 
   // Create a new employee
   createNewEmployee(employee) {
@@ -45,12 +45,12 @@ class DB {
   }
 
   // Update the given employee's manager
-  updateManager(employeeId, managerId) {
-    return this.connection.query(
-      "UPDATE employee SET manager_id = ? WHERE id = ? ",
-      [employeeId, managerId]
-    );
-  }
+  // updateManager(employeeId, managerId) {
+  //   return this.connection.query(
+  //     "UPDATE employee SET manager_id = ? WHERE id = ? ",
+  //     [employeeId, managerId]
+  //   );
+  // }
 
   // Find all roles, join with departments to display the department name
   findAllRoles() {

@@ -100,10 +100,10 @@ async function loadMainPrompts() {
       return createNewEmployee();
     case "UPDATE_EMPLOYEE_BY_ROLE":
       return updateEmployeeRole();
-    case "UPDATE_EMPLOYEE_MANAGER":
-      return updateEmployeeManager();
-    case "VIEW_MANAGER":
-      return viewManagers();
+    // case "UPDATE_EMPLOYEE_MANAGER":
+    //   return updateEmployeeManager();
+    // case "VIEW_MANAGER":
+    //   return viewManagers();
     case "REMOVE_EMPLOYEE":
       return removeThisEmployee();
     case "REMOVE_ROLE":
@@ -230,40 +230,6 @@ async function updateEmployeeRole() {
   loadMainPrompts();
 }
 
-// async function createNewManager() {
-//   const findEmployees = await db.findAllEmployees();
-//   const manager = await db.createManager();
-
-//   const employeeChoices = findEmployees.map(
-//     ({ id, first_name, last_name }) => ({
-//       name: `${first_name} ${last_name}`,
-//       value: id,
-//     })
-//   );
-//   const { updatedManager } = await prompt([
-//     {
-//       type: "list",
-//       name: "updateManager",
-//       message: "Select an employee to give a manager",
-//       choices: employeeChoices,
-//     },
-//   ]);
-//   const managerChoices = findManagers.map(({ id, title }) => ({
-//     name: title,
-//     value: id,
-//   }));
-//   const { newManager } = await prompt([
-//     {
-//       type: "list",
-//       name: "newManager",
-//       message: "select new manager",
-//       choices: managerChoices,
-//     },
-//   ]);
-//   await db.createManager(updatedManager, newManager);
-//   loadMainPrompts();
-// }
-
 async function addDepartment() {
   const answers = await prompt([
     {
@@ -322,12 +288,12 @@ async function addRole() {
   loadMainPrompts();
 }
 
-async function viewManagers() {
-  const managers = await db.findAllPossibleManagers();
-  console.table(managers);
+// async function viewManagers() {
+//   const managers = await db.findAllPossibleManagers();
+//   console.table(managers);
 
-  loadMainPrompts();
-}
+//   loadMainPrompts();
+// }
 
 async function removeThisRole() {
   const roles = await db.findAllRoles();
